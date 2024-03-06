@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock title %}
+{% load static %}
+{% block head %}
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<!------ Include the above in your HEAD tag ---------->
+{% endblock head %}
+{% block body %}
+
+
+
+  
+  
+
+
+<div class="container">
+    <div class="row profile">
+		<div class="col-md-3">
+			<div class="profile-sidebar">
+				<!-- SIDEBAR USERPIC -->
+				<div class="profile-userpic text-center">
+					<img src="https://placehold.co/200x200/png" class="img-fluid rounded-circle" alt="" id="imagePreview">
+				</div>
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						Marcus Doe
+					</div>
+					<div class="profile-usertitle-job">
+						Developer
+					</div>
+				</div>
+				<!-- END SIDEBAR USER TITLE -->
+				<!-- SIDEBAR BUTTONS -->
+				<div class="profile-userbuttons">
+					<button type="button" class="btn btn-success btn-sm">Follow</button>
+					<button type="button" class="btn btn-danger btn-sm">Message</button>
+				</div>
+				<!-- END SIDEBAR BUTTONS -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav flex-column">
+						<li class="nav-item">
+							<a class="nav-link active" href="#" id ="overview">
+                            <i class="fa fa-home"></i>
+							Overview </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#" id="accset">
+                            <i class="fa fa-user"></i>
+							Account Settings </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#" >
+                            <i class="fa fa-check"></i>
+							Tasks </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">
+                            <i class="fa fa-flag"></i>
+							Help </a>
+						</li>
+					</ul>
+				</div>
+				<!-- END MENU -->
+			</div>
+		</div>
+		<div class="col-md-9">
+            <div class="profile-content" id = "userposts">
+			   Some user related content goes here...
+            </div>
+            <div class="profile-content" id="profilesettingform" style="display: none;">
+                <form>
+                    <!-- Profile Image Upload with Preview -->
+                    <div class="form-group">
+                      <label for="profileImage">Profile Image</label>
+                      <input type="file" class="form-control-file" id="profileImage" accept="image/*">
+                      <img id="imagePreview" class="img-thumbnail mt-2" alt="Profile Preview" style="max-width: 150px; display: none;">
+                    </div>
+            
+                    <!-- User Name -->
+                    <div class="form-group">
+                      <label for="userName">Name</label>
+                      <input type="text" class="form-control" id="userName" placeholder="Enter your name">
+                    </div>
+            
+                    <!-- User Bio -->
+                    <div class="form-group">
+                      <label for="userBio">Bio</label>
+                      <textarea class="form-control" id="userBio" rows="4" placeholder="Enter your bio"></textarea>
+                    </div>
+            
+                    <!-- Save Button -->
+                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                  </form>
+             </div>
+		</div>
+	</div>
+</div>
+
+<script>
+    document.getElementById('profileImage').addEventListener('change', function (event) {
+      var input = event.target;
+      var imagePreview = document.getElementById('imagePreview');
+  
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+  
+        reader.onload = function (e) {
+          imagePreview.src = e.target.result;
+          imagePreview.style.display = 'block';
+        };
+  
+        reader.readAsDataURL(input.files[0]);
+      }
+    });
+
+    document.getElementById('accset').addEventListener('click', function (event) {
+        document.getElementById('userposts').style.display="none";
+        document.getElementById('profilesettingform').style.display = "block";
+    });
+
+    document.getElementById('overview').addEventListener('click', function (event) {
+        document.getElementById('userposts').style.display="block";
+        document.getElementById('profilesettingform').style.display = "none";
+    });
+  </script>
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+{% endblock body %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Categories{% endblock title %}
+
+{% block body %}
+<h1 style = "align-text:center">{{category | title}}</h1>
+<hr>
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+   
+  
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for post in posts %}
+            <div class="col">
+              <div class="card shadow-sm">
+                <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{post.image.url}}" alt=""/>
+                <div class="card-body">
+                  <p class="card-text">{{ post.title |truncatewords:4 }}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='/post/{{ post.id }}'">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary" disabled>Edit</button>
+                    </div>
+                    <small class="text-body-secondary">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% if n > 9 %}
+  <div class="pagination justify-content-center mt-4">
+  <nav aria-label="...">
+    <ul class="pagination">
+      {% comment %} <li class="page-item disabled">
+        <a class="page-link">Previous</a>
+      </li> {% endcomment %}
+      {% for i in count %}
+      {% if page == i%}
+      <li class="page-item active" aria-current="page">
+        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+      </li>
+      {% else %}
+      <li class="page-item" aria-current="page">
+        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+      {% comment %} <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li> {% endcomment %}
+    </ul>
+  </nav>
+</div>
+{% endif %}
+  </div>
+{% endblock body %}

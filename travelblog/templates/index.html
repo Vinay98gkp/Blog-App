@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock title %}
+
+{% block body %}
+{% load static %}
+<div class ="container-fluid px-0">
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <!--<img src="https://source.unsplash.com/1600x500/?travel" class="d-block w-100" alt="...">-->
+            <img src="{% static 'images/pic1.jpg' %}"  class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block" style="background:black; border-radius:40px;">
+              <h5>Travel World !</h5>
+              <p>Traveling the world: where each step is a story, and every horizon is an invitation to explore the extraordinary.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/pic2.jpg' %}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block" style="background:black; border-radius:40px;">
+              <h5>Explore Mountains !</h5>
+              <p>Exploring mountains: where every ascent unveils a new perspective, and every summit echoes the triumph of the human spirit.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/pic3.jpg' %}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block" style="background:black; border-radius:40px;">
+              <h5>Healthy Lifestyle !</h5>
+              <p>A healthy lifestyle is the journey of nourishing the body, enriching the mind, and embracing the balance of well-being.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+<div/>
+
+<div class="album py-5 bg-body-tertiary">
+  <div class="container">
+ 
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      {% for post in posts %}
+          <div class="col">
+            <div class="card shadow-sm">
+              <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{post.image.url}}" alt=""/>
+              <div class="card-body">
+                <p class="card-text">{{ post.title |truncatewords:4 }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='/post/{{ post.id }}'">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" disabled>Edit</button>
+                  </div>
+                  <small class="text-body-secondary">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+  {% if n > 9 %}
+  <div class="pagination justify-content-center mt-4">
+  <nav aria-label="...">
+    <ul class="pagination">
+      {% comment %} <li class="page-item disabled">
+        <a class="page-link">Previous</a>
+      </li> {% endcomment %}
+      {% for i in count %}
+      {% if page == i%}
+      <li class="page-item active" aria-current="page">
+        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+      </li>
+      {% else %}
+      <li class="page-item" aria-current="page">
+        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+      {% comment %} <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li> {% endcomment %}
+    </ul>
+  </nav>
+</div>
+{% endif %}
+</div>
+
+
+{% endblock body %}

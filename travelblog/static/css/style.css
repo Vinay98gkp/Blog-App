@@ -1,0 +1,58 @@
+/* bg-img class is for the addblog.html */
+.bg-img {
+    /* The image used */
+    background-image: url('../images/formimg.jpg');
+
+    min-height: 380px;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    border-radius: 10px;
+    padding:10px;  
+}
+
+
+
+/* bg-styl class is for the addblo.html*/
+.bg-style{
+    background-color: #f8f9fa; /* Set a background color for better visibility */
+    }
+
+    .blog-container {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .blog-title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .blog-image {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .blog-description {
+      font-size: 18px;
+}
+
+
+/* this effect is for all the button used*/
+button:hover{
+   cursor: pointer;
+}
+
+
+.form-box {
+  background-color: rgba(255, 255, 255, 0.5); /* Set a white background for the form box */
+  backdrop-filter: blur(30px);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
